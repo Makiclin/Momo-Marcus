@@ -1,0 +1,75 @@
+/* reset padding and margins */
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	font-family: helvetica, arial, sans-serif;
+}
+
+/* container */
+
+.container {
+	position: relative;
+}
+
+/* items */
+
+.item {
+	height: 250px;
+	width: 250px;
+	background: blue;
+	color: yellow;
+	margin: 10px;
+	padding: 10px;
+	box-sizing: border-box;
+	float: left; 
+	transition: all 500ms ease; 
+
+	cursor: pointer;
+}
+
+/* example button 1 */
+
+#button-1:hover {
+	transform: rotate(90deg) scale(1.5);
+	opacity: .3;
+}
+
+#button-1:active {
+	background: pink;
+	opacity: 1;
+}
+
+/* example button 2 */
+
+#button-2::after {
+	content: 'this is added after the content inside the button';
+	color: white;
+}
+
+
+#button-2:hover::after {
+	content: 'this text changes on hover';
+	color: red;
+}
+
+/* example button 3 is changed only via js */
+
+/* example button 4 */
+#button-4.gradient-background {
+	background: linear-gradient(blue, pink);
+	color: transparent;
+}
+
+/* example button 5 */
+.circle {
+	border-radius: 125px;
+}
+
+/* example button 6 */
+#button-6{
+	transition: none; 
+}

@@ -1,0 +1,25 @@
+/* reset padding and margins */
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	font-family: helvetica, arial, sans-serif;
+}
+
+iframe {
+	width: 540px;
+	height: 3510px;
+	border: none;
+}
+
+/* container */
+
+#container {
+	margin: 100px auto;
+	width: 1080px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
