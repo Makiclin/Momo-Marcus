@@ -7,7 +7,7 @@
 
 body {
 	font-family: helvetica, arial, sans-serif;
-	background-color: black;
+	background-image: linear-gradient(black, white);
 }
 
 /* container */
