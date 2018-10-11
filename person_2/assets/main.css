@@ -7,6 +7,8 @@
 
 body {
 	font-family: helvetica, arial, sans-serif;
+	 background-image: linear-gradient(black, white);
+
 }
 
 /* container */
@@ -20,56 +22,190 @@ body {
 .item {
 	height: 250px;
 	width: 250px;
-	background: red;
+	background: black;
 	color: orange;
 	margin: 10px;
-	padding: 10px;
+	padding: 115px;
 	box-sizing: border-box;
 	float: left; 
 	transition: all 500ms ease; 
-
-	cursor: pointer;
 }
 
 /* example button 1 */
 
 #button-1:hover {
-	transform: rotate(90deg) scale(1.5);
+	transform: rotate(90deg) scale(0.5);
 	opacity: .3;
 }
 
 #button-1:active {
-	background: pink;
+	background: white;
 	opacity: 1;
 }
 
 /* example button 2 */
 
 #button-2::after {
-	content: 'this is added after the content inside the button';
-	color: white;
+	content: '';
+	color:white;
 }
 
 
 #button-2:hover::after {
-	content: 'this text changes on hover';
-	color: red;
+	content: 'HIDE';
+	color: #555;
 }
-
 /* example button 3 is changed only via js */
 
 /* example button 4 */
 #button-4.gradient-background {
-	background: linear-gradient(blue, pink);
+	background-image: repeating-radial-gradient(black 2%, #555 15%);
 	color: transparent;
+	cursor: progress;
 }
 
 /* example button 5 */
+
 .circle {
 	border-radius: 125px;
 }
+.circletwo{
+	transform:scale(1,0.5);
+}
+.halfround{
+	border-radius:30px;
+}
+.disappear{
+	transform:scale(0.1);
+} 
 
 /* example button 6 */
 #button-6{
-	transition: none; 
+	transition: background-color 4s ease;
 }
+#button-6:hover{
+background-color: #555;
+}
+#button-7{
+	transition: background-color .5s ease;
+}
+#button-7:hover{
+	transform: rotate(60deg) scale(.75);
+	opacity: .3;
+	border-radius: 20px;
+	background-color: #555;
+}
+
+#button-8{
+}
+#button-8:hover{
+	transform: scale(.75,1);
+	opacity: .7;
+}
+#button-25{
+	cursor: help;
+}
+
+#button-10{
+	transition: background-color .5s ease;
+}
+
+#button-10.color{
+background-color: #555;
+}
+#button-11{
+}
+
+#button-11:hover{
+animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+#button-12{
+}
+
+#button-12:hover{
+opacity: 0.6
+}
+
+#button-13{
+	transition: background-color .5s ease;
+}
+
+#button-13:hover{
+background-color: red;
+}
+@keyframes{
+    from {background-color: red;}
+    to {background-color: yellow;}
+}
+#button-23{
+}
+
+#button-23:hover{
+transform: scale(2);
+}
+#button-24{
+	transition: background-color .5s ease;
+}
+
+#button-24:hover{
+transform: scale(3,.5);
+background-color: #555;
+}
+
+.flash{ 
+    position:absolute; 
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+  	width: 300px;
+    background-color:#fff;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
