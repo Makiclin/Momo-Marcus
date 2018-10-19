@@ -19,70 +19,149 @@ var render = Render.create({
 		options: {
             width: 1680,
             height: 880,
-            background: '#FFFFFF',
+            background: 'transparent',
             showAngleIndicator: false,
             wireframes: false,
         }
 });
 
+
+$('body').on('click', function(e) {
+var bleep = new Audio('./audio/like.mp3');
+
+var bleep2 = new Audio('./audio/like.mp3');
+
+var playFirst = true;
+
+function playSound() {
+  if (playFirst) {
+    bleep.play();
+  } else {
+    bleep2.play();
+  }
+  playFirst = !playFirst;
+}
+
+playSound();
+
+});
+
+
+$('body').on('contextmenu', function(e) {
+var bleep = new Audio('./audio/youknow.wav');
+
+var bleep2 = new Audio('./audio/youknow.wav');
+
+var playFirst = true;
+
+function playSound() {
+  if (playFirst) {
+    bleep.play();
+  } else {
+    bleep2.play();
+  }
+  playFirst = !playFirst;
+}
+
+playSound();
+
+});
+
+
 // create two boxes and a ground
-var boxA = Bodies.rectangle(400, 200, 80, 80);
-var boxB = Bodies.rectangle(450, 50, 80, 80);
-var ground = Bodies.rectangle(840, 878, 1680, 10, { isStatic: true });
-var poop = Bodies.rectangle(600, 50, 80, 80, {
-                render: {
-                    sprite: {
-                        texture:  '/img/poop.png'
-                    }
-                }}
-            );
+var ground = Bodies.rectangle(840, 900, 1680, 10, { isStatic: true });
+var wall1 = Bodies.rectangle(-10, 0, 10, 2000, { isStatic: true });
+var wall2 = Bodies.rectangle(1690, 0, 10, 2000, { isStatic: true });
 
-var poop2 = Bodies.rectangle(900, 50, 80, 80, {
-                render: {
-                    sprite: {
-                        texture:  '/img/poop.png'
-                    }
-                }}
-            );
-
-var emojis =[boxA, boxB, ground, poop];
+var basis =[ground,wall1,wall2];
 
 
 
 // $('body').on('click', function () {
 //    emojis.push(poop2);
-//    console.log(emojis.length)
+//    console.log(emojis.length);
 // });
 
-var ball = function (x, y) {
+$('body').on('click', function(e) {
 
-    return Bodies.circle(x, y, 23, {
-        density: 0.0005,
-        frictionAir: 0.06,
-        restitution: 0.3,
-        friction: 0.01,
-        render: {
-            sprite: {
-                texture:  '/img/poop.png'
-            }
-        }
-    });
-}
+  var scale = (Math.random() * 1)+0.5;
+  var size = scale * 55;
 
-var x;
-var y;
+  var xPos = e.pageX
+  var yPos = e.pageY
 
-$('body').on('click', function (e) {
-    World.add(engine.world, ball());
-    x = e.pageX;
-    y = e.pageY;
-})
+
+  var poop = function () {
+
+
+      return Bodies.circle(xPos, yPos, size, {
+          density: 0.0005,
+          frictionAir: 0.06,
+          restitution: 0.3,
+          friction: 0.25,
+          render: {
+              sprite: {
+                  texture:  '/img/poop.png',
+                  xScale: scale,
+                  yScale: scale,
+              }
+          }
+      });
+  }
+
+
+      World.add(engine.world, poop());
+
+});
+
+
+
+
+
+
+$('body').on('contextmenu', function(e) {
+
+
+
+  var xPos = e.pageX
+  var yPos = e.pageY
+
+
+  var scale = (Math.random() * 1)+0.5;
+  var size = scale * 55;
+
+
+  var poop = function () {
+
+
+      return Bodies.circle(xPos, yPos, size, {
+          density: 0.0005,
+          frictionAir: 0.06,
+          restitution: 0.3,
+          friction: 0.25,
+          render: {
+              sprite: {
+                  texture:  '/img/youknow.png',
+                  xScale: scale,
+                  yScale: scale,
+              }
+          }
+      });
+  }
+
+
+      World.add(engine.world, poop());
+
+});
+
+
+// }
 
 
 // add all of the bodies to the world
-World.add(engine.world, emojis);
+World.add(engine.world, basis);
 
-console.log(emojis.length)
+
 
 // run the engine
 Engine.run(engine);
