@@ -49,9 +49,34 @@ var emojis =[boxA, boxB, ground, poop];
 
 
 
-$( "body" ).click(function() {
-   emojis.push(poop2);
-});
+// $('body').on('click', function () {
+//    emojis.push(poop2);
+//    console.log(emojis.length)
+// });
+
+var ball = function (x, y) {
+
+    return Bodies.circle(x, y, 23, {
+        density: 0.0005,
+        frictionAir: 0.06,
+        restitution: 0.3,
+        friction: 0.01,
+        render: {
+            sprite: {
+                texture:  '/img/poop.png'
+            }
+        }
+    });
+}
+
+var x;
+var y;
+
+$('body').on('click', function (e) {
+    World.add(engine.world, ball());
+    x = e.pageX;
+    y = e.pageY;
+})
 
 
 // add all of the bodies to the world
