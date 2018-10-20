@@ -1,5 +1,98 @@
+$(window).keypress(function (e) {
+  if (e.key === ' ' || e.key === 'Spacebar') {
+    // ' ' is standard, 'Spacebar' was used by IE9 and Firefox < 37
+    e.preventDefault()
+    $( ".insContainer" ).addClass("hide");
+  }
+})
+
+
+
+var frequency = function(actionTarget, milliseconds, callback) {
+  var mouseDown = 0;
+  $(window).click(function() {
+    if (mouseDown < actionTarget) mouseDown++;
+  });
+  var loop = setInterval(function() {
+    callback(mouseDown / (actionTarget));
+    mouseDown -= (1 - (actionTarget / milliseconds));
+    if (mouseDown < 0) mouseDown = 0;
+  }, milliseconds);
+  this.stop = function() {
+    clearInterval(loop);
+  }
+};
+
+var rfrequency = function(actionTarget, milliseconds, callback) {
+  var contextmenu = 0;
+  $(window).contextmenu(function() {
+    if (contextmenu < actionTarget) contextmenu++;
+  });
+  var loop = setInterval(function() {
+    callback(contextmenu / (actionTarget));
+    contextmenu -= (1 - (actionTarget / milliseconds));
+    if (contextmenu < 0) contextmenu = 0;
+  }, milliseconds);
+  this.stop = function() {
+    clearInterval(loop);
+  }
+};
+
+
+
+var clickf=[];
+var rclickf=[];
+
+var clickEmoji = '/img/cool.png';
+var rightClickEmoji =  '/img/youknow.png';
+
+
 $( document ).ready(function() {
-    console.log( "ready!" );
+
+
+frequency(100, 1000, function(freq) {
+
+    document.getElementById("result").innerHTML = Number(freq).toFixed(2);
+    clickf.push(Number(freq));
+
+    // console.log(clickf.slice(-1)[0]);
+
+    if(clickf.slice(-1)[0] > 0.03 && clickf.slice(-1)[0] < 0.06){
+      clickEmoji = '/img/vomiting.png';
+      document.getElementById("my_camera").classList.add("gray50");
+      document.getElementById("my_camera").classList.remove("gray90");
+    }else{document.getElementById("my_camera").classList.remove("gray50");clickEmoji = '/img/cool.png';}
+
+    if(clickf.slice(-1)[0] > 0.06){
+      clickEmoji = '/img/poop.png';
+      document.getElementById("my_camera").classList.add("gray90");
+    }
+
+
+});
+
+rfrequency(100, 1000, function(freq) {
+
+    document.getElementById("rresult").innerHTML = Number(freq).toFixed(2);
+    rclickf.push(Number(freq));
+
+    // console.log(clickf.slice(-1)[0]);
+
+    if(rclickf.slice(-1)[0] > 0.02 && rclickf.slice(-1)[0] < 0.06){
+      rightClickEmoji = '/img/dizzy.png';
+      document.getElementById("my_camera").classList.add("gray50");
+      document.getElementById("my_camera").classList.remove("gray90");
+    }else{document.getElementById("my_camera").classList.remove("gray50");rightClickEmoji =  '/img/youknow.png';}
+
+    if(rclickf.slice(-1)[0] > 0.06){
+      rightClickEmoji = '/img/poop.png';
+      document.getElementById("my_camera").classList.add("gray90");
+    }
+
+
+});
+
+
 
 
 // module aliases
@@ -27,7 +120,7 @@ var render = Render.create({
 
 
 $('body').on('click', function(e) {
-var bleep = new Audio('./audio/like.mp3');
+var bleep = new Audio('./audio/like_google.m4a');
 
 var bleep2 = new Audio('./audio/like.mp3');
 
@@ -101,7 +194,7 @@ $('body').on('click', function(e) {
           friction: 0.25,
           render: {
               sprite: {
-                  texture:  '/img/poop.png',
+                  texture:  clickEmoji,
                   xScale: scale,
                   yScale: scale,
               }
@@ -121,8 +214,6 @@ $('body').on('click', function(e) {
 
 $('body').on('contextmenu', function(e) {
 
-
-
   var xPos = e.pageX
   var yPos = e.pageY
 
@@ -139,11 +230,13 @@ $('body').on('contextmenu', function(e) {
           frictionAir: 0.06,
           restitution: 0.3,
           friction: 0.25,
+          rotate:20,
           render: {
               sprite: {
-                  texture:  '/img/youknow.png',
+                  texture:  rightClickEmoji,
                   xScale: scale,
                   yScale: scale,
+                  rotate:20,
               }
           }
       });
