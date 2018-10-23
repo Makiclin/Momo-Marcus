@@ -1,4 +1,59 @@
 body{
   padding: 0;
   margin:0;
+
+  /* background: black; */
+}
+
+#my_camera{
+  position: absolute;
+  z-index: -100;
+  transform: scale(1.9);
+  left: 380px;
+  top: 38px;
+  transition: 1s all ease;
+
+
+}
+
+.gray50{
+  filter: grayscale(60%) contrast(120%);
+}
+
+.gray90{
+  filter: grayscale(90%) contrast(200%);
+}
+
+#result{
+  z-index: 100;
+  opacity: 0.1;
+}
+
+#rresult{
+  z-index: 100;
+  opacity: 0.1;
+}
+
+#instructionDiv{
+  width: 634px;
+  height: 982px;
+  z-index: 200;
+  transform: scale(0.7);
+}
+
+.insContainer{
+  width: 38vw;
+  margin-left: 31vw;
+  margin-right: 31vw;
+  margin-top: -60px;
+  position: absolute;
+}
+
+.hide{
+  z-index: -100;
+  opacity: 0;
+}
+
+canvas{
+  margin-top: -40px;
 }
