@@ -120,7 +120,7 @@ var render = Render.create({
 
 
 $('body').on('click', function(e) {
-var bleep = new Audio('./audio/like_google.m4a');
+var bleep = new Audio('./audio/like.mp3');
 
 var bleep2 = new Audio('./audio/like.mp3');
 
